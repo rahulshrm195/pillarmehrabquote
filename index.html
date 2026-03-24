@@ -141,19 +141,24 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
   color: var(--text); margin-bottom: 4px;
 }
 .step-sub {
-  font-size: 0.72rem; color: var(--text-muted);
+  font-size: 0.72rem; color: var(--text-dim);
   margin-bottom: 18px; line-height: 1.55;
 }
-.step-sub .lang { color: var(--text-dim); }
+.step-sub .lang { color: var(--text-muted); }
 
 /* ── Input row ── */
 .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
 .input-row.three { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
 .field-label {
-  font-size: 0.62rem; font-weight: 600; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 5px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-size: 0.6rem; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 5px; line-height: 1.3;
+}
+.field-label-sub {
+  display: block; font-size: 0.58rem; font-weight: 400;
+  color: var(--text-dim); text-transform: none; letter-spacing: 0;
+  margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 /* ── Big input ── */
@@ -609,13 +614,13 @@ const T = {
   sub4: { en:'Both dimensions in inches', hi:'दोनों माप इंच में', mr:'दोन्ही माप इंचात' },
   sub5: { en:'Default ₹5,500 per CFT — change if needed', hi:'डिफ़ॉल्ट ₹5,500 प्रति CFT — ज़रूरत हो तो बदलें', mr:'डीफॉल्ट ₹5,500 प्रति CFT — हवे असल्यास बदला' },
   // Field labels
-  fl_l:   { en:'Length (ft)', hi:'लंबाई (ft)', mr:'लांबी (ft)' },
-  fl_b:   { en:'Breadth (in)', hi:'चौड़ाई (in)', mr:'रुंदी (in)' },
-  fl_h:   { en:'Height (in)', hi:'ऊंचाई (in)', mr:'उंची (in)' },
-  fl_lin: { en:'Length (in)', hi:'लंबाई (in)', mr:'लांबी (in)' },
-  fl_bin: { en:'Breadth (in)', hi:'चौड़ाई (in)', mr:'रुंदी (in)' },
-  fl_qty: { en:'Qty (nos)', hi:'संख्या (नग)', mr:'संख्या (नग)' },
-  fl_rate:{ en:'Rate (₹/cft)', hi:'दर (₹/cft)', mr:'दर (₹/cft)' },
+  fl_l:   { en:'Length (ft)', hi:'लंबाई', mr:'लांबी' },
+  fl_b:   { en:'Breadth (in)', hi:'चौड़ाई', mr:'रुंदी' },
+  fl_h:   { en:'Height (in)', hi:'ऊंचाई', mr:'उंची' },
+  fl_lin: { en:'Length (in)', hi:'लंबाई', mr:'लांबी' },
+  fl_bin: { en:'Breadth (in)', hi:'चौड़ाई', mr:'रुंदी' },
+  fl_qty: { en:'Qty (nos)', hi:'संख्या', mr:'संख्या' },
+  fl_rate:{ en:'Rate (₹/cft)', hi:'दर', mr:'दर' },
   // Buttons
   btn_next: { en:'Next →', hi:'आगे →', mr:'पुढे →' },
   btn_calc: { en:'Calculate My Quote →', hi:'मेरा कोटेशन देखें →', mr:'माझे कोटेशन पहा →' },
@@ -625,7 +630,7 @@ const T = {
 const L = (key) => {
   const o = T[key];
   if (!o) return key;
-  return `${o.en} · <span class="lang">${o.hi} · ${o.mr}</span>`;
+  return `${o.en}<span class="field-label-sub">${o.hi} · ${o.mr}</span>`;
 };
 const Lplain = (key) => {
   const o = T[key]; if(!o) return key;
@@ -734,8 +739,8 @@ function stepCard(dotType, qKey, subKey, inputsHtml, isFinal) {
       </div>
       <div class="step-question">${T[qKey].en}</div>
       <div class="step-sub">
-        ${T[subKey].hi} · ${T[subKey].mr}
-        <br><span class="lang">${T[subKey].en}</span>
+        <span style="display:block">${T[subKey].hi} · ${T[subKey].mr}</span>
+        <span class="lang">${T[subKey].en}</span>
       </div>
       <div id="w-live-preview" class="live-preview" style="display:none">
         <span class="lp-label">Estimated so far</span>
