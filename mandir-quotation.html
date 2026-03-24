@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Pillar Mehrab Quote — Amar Furniture</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f0ea;
+  --surface: #ffffff;
+  --surface2: #faf6f1;
+  --border: #e4d9cc;
+  --border2: #d4c4b0;
+  --text: #1a1208;
+  --text-muted: #6a5a48;
+  --text-dim: #a89880;
+  --gold: #b8720a;
+  --gold-light: #d4880c;
+  --gold-dim: #c8960a;
+  --accent: #c8623a;
+  --accent2: #8b4513;
+  --pillar: #2e6aad;
+  --mehrab: #a04828;
+  --green: #2e7a4e;
+  --shadow: 0 2px 12px rgba(26,18,8,0.08);
+  --shadow-lg: 0 8px 32px rgba(26,18,8,0.12);
+  --r: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ═══ MODE SELECTOR (top) ═══ */
+.mode-bar {
+  position: sticky; top: 0; z-index: 200;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px;
+}
+.mode-inner {
+  max-width: 520px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 0;
+}
+.mode-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; color: var(--gold); font-weight: 700;
+}
+.mode-brand span { font-size: 0.65rem; color: var(--text-muted); display: block; font-family: 'DM Sans', sans-serif; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; }
+.mode-toggle {
+  display: flex; gap: 4px;
+  background: var(--surface2); border-radius: 10px; padding: 4px;
+  border: 1px solid var(--border);
+}
+.mode-btn {
+  padding: 6px 14px; border: none; border-radius: 7px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s; background: transparent;
+  color: var(--text-muted); letter-spacing: 0.02em;
+}
+.mode-btn.active { background: var(--accent2); color: #ffffff; font-weight: 600; }
+.mode-btn:hover:not(.active) { background: var(--border); color: var(--text); }
+
+/* ═══ PAGES ═══ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════
+   CUSTOMER WIZARD
+═══════════════════════════════ */
+.wizard-wrap {
+  max-width: 520px; margin: 0 auto;
+  padding: 0 16px 100px;
+}
+
+/* Progress bar */
+.progress-bar {
+  padding: 20px 0 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.progress-track {
+  flex: 1; height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%; background: var(--accent2);
+  border-radius: 2px; transition: width 0.4s ease;
+}
+.progress-label {
+  font-size: 0.72rem; color: var(--text-muted);
+  font-family: 'DM Mono', monospace; white-space: nowrap;
+}
+
+/* Step card */
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.3s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-eyebrow {
+  font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text-dim); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.step-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+}
+.dot-pillar { background: var(--pillar); }
+.dot-mehrab { background: var(--mehrab); }
+.dot-gold   { background: var(--gold); }
+
+.step-question {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 700; line-height: 1.3;
+  color: var(--text); margin-bottom: 6px;
+}
+.step-sub {
+  font-size: 0.78rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5;
+}
+.step-sub .lang { color: var(--text-dim); }
+
+/* Hide spinners on all number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; appearance: textfield; }
+
+/* Big input field */
+.big-input-wrap {
+  position: relative; margin-bottom: 14px;
+}
+.big-input {
+  width: 100%;
+  font-family: 'DM Mono', monospace;
+  font-size: 1.4rem; font-weight: 500;
+  padding: 13px 46px 13px 14px;
+  background: var(--surface2);
+  border: 2px solid var(--border2);
+  border-radius: 12px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+.big-input:focus {
+  border-color: var(--accent2);
+  box-shadow: 0 0 0 4px rgba(139,69,19,0.1);
+}
+.big-input::placeholder { color: var(--text-dim); }
+.big-input-unit {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  font-size: 0.7rem; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.04em; pointer-events: none;
+}
+
+/* Input row (two side by side) */
+.input-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+}
+.input-row.three { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+.field-label {
+  font-size: 0.7rem; font-weight: 500; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.field-label .field-hint { color: var(--text-dim); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.68rem; display: block; margin-top: 2px; }
+
+/* Next button */
+.next-btn {
+  width: 100%; padding: 16px;
+  background: var(--accent2); color: #ffffff;
+  border: none; border-radius: 12px;
+  font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 8px;
+}
+.next-btn:hover { background: var(--accent); transform: translateY(-1px); }
+.next-btn:active { transform: translateY(0); }
+.next-btn:disabled { background: var(--border2); color: var(--text-dim); cursor: not-allowed; transform: none; }
+
+.back-link {
+  text-align: center; margin-top: 14px;
+  font-size: 0.8rem; color: var(--text-muted); cursor: pointer;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--text); }
+
+/* ── Live preview chip ── */
+.live-preview {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lp-label { font-size: 0.72rem; color: var(--text-muted); }
+.lp-value { font-family: 'DM Mono', monospace; font-size: 1.1rem; color: var(--accent2); font-weight: 600; }
+
+/* ═══════════════════════════════
+   QUOTE RESULT PAGE
+═══════════════════════════════ */
+.quote-wrap {
+  max-width: 520px; margin: 0 auto;
+  padding: 24px 16px 100px;
+}
+
+/* Hero total */
+.hero-total {
+  background: linear-gradient(135deg, #5a2d0c 0%, #8b4513 100%);
+  border: 1px solid #a0530f;
+  border-radius: var(--r);
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-lg);
+  position: relative; overflow: hidden;
+}
+.hero-total::before {
+  content: '🛕';
+  position: absolute; top: -10px; right: 16px;
+  font-size: 5rem; opacity: 0.1;
+}
+.hero-eyebrow {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.6); margin-bottom: 8px; font-weight: 600;
+}
+.hero-firm {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; color: rgba(255,255,255,0.75); margin-bottom: 16px;
+}
+.hero-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 700; color: #ffffff;
+  letter-spacing: -0.02em; line-height: 1;
+  margin-bottom: 6px;
+}
+.hero-ref {
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.06em;
+}
+
+/* Breakdown card */
+.breakdown-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.bc-header {
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.bc-header.pillar { background: rgba(74,122,181,0.1); border-left: 3px solid var(--pillar); }
+.bc-header.mehrab { background: rgba(181,96,64,0.1); border-left: 3px solid var(--mehrab); }
+.bc-header h3 { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.bc-header .bc-total { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 0.95rem; color: var(--accent2); font-weight: 600; }
+
+.bc-table { width: 100%; border-collapse: collapse; }
+.bc-table tr { border-bottom: 1px solid var(--border); }
+.bc-table tr:last-child { border-bottom: none; }
+.bc-table td {
+  padding: 12px 20px;
+  font-size: 0.82rem; vertical-align: middle;
+}
+.bc-table .td-name { color: var(--text-muted); }
+.bc-table .td-name strong { display: block; color: var(--text); font-weight: 500; font-size: 0.88rem; margin-bottom: 2px; }
+.bc-table .td-name .td-size { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); }
+.bc-table .td-qty { text-align: center; font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--text-muted); }
+.bc-table .td-rate { text-align: right; font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text-muted); }
+.bc-table .td-amt { text-align: right; font-family: 'DM Mono', monospace; font-size: 0.9rem; font-weight: 500; color: var(--text); }
+.bc-table .bc-thead td { font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); padding: 8px 20px; background: var(--surface2); }
+
+/* Quote actions */
+.quote-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+.qa-btn {
+  padding: 14px 16px; border: none; border-radius: 12px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all 0.2s;
+}
+.qa-wa { background: #25d366; color: white; }
+.qa-wa:hover { background: #1fb855; transform: translateY(-1px); }
+.qa-print { background: var(--accent2); color: white; }
+.qa-print:hover { background: #6d3410; transform: translateY(-1px); }
+.qa-restart { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border2); grid-column: 1/-1; }
+.qa-restart:hover { background: var(--surface2); }
+
+/* ═══════════════════════════════
+   INTERNAL CALCULATOR (Page 2)
+═══════════════════════════════ */
+.calc-wrap {
+  max-width: 720px; margin: 0 auto;
+  padding: 20px 16px 100px;
+}
+.calc-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.cs-header {
+  padding: 14px 20px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.cs-header.pillar { background: rgba(74,122,181,0.12); border-left: 4px solid var(--pillar); }
+.cs-header.mehrab { background: rgba(181,96,64,0.12); border-left: 4px solid var(--mehrab); }
+.cs-header h2 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+.cs-header .badge {
+  margin-left: auto; font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  background: rgba(0,0,0,0.06); padding: 3px 8px; border-radius: 20px; color: var(--text-muted);
+}
+.cs-sub { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.cs-sub:last-child { border-bottom: none; }
+.cs-sub-title {
+  font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-dim); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 6px;
+}
+.cs-sub-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.ci-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr));
+  gap: 10px; margin-bottom: 12px;
+}
+.ci-field { display: flex; flex-direction: column; gap: 5px; }
+.ci-field label { font-size: 0.7rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.04em; }
+.ci-field input {
+  font-family: 'DM Mono', monospace; font-size: 0.92rem;
+  padding: 9px 12px; border: 1.5px solid var(--border2); border-radius: 8px;
+  background: var(--surface2); color: var(--text); outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
+}
+.ci-field input:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(139,69,19,0.1); }
+.ci-field input.rate { border-style: dashed; color: var(--accent2); }
+.formula {
+  font-family: 'DM Mono', monospace; font-size: 0.66rem; color: var(--text-dim);
+  background: var(--surface2); border-radius: 6px; padding: 7px 10px;
+  margin-bottom: 10px; letter-spacing: 0.02em; border: 1px solid var(--border);
+}
+.result-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 14px; background: rgba(139,69,19,0.06);
+  border: 1px solid rgba(139,69,19,0.15); border-radius: 8px; margin-top: 6px;
+}
+.result-row .rl { font-size: 0.76rem; color: var(--text-muted); }
+.result-row .rv { font-family: 'DM Mono', monospace; font-size: 0.95rem; font-weight: 500; color: var(--accent2); }
+.cs-total {
+  padding: 14px 20px; background: rgba(139,69,19,0.06);
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(139,69,19,0.2);
+}
+.cs-total .ctl { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--accent2); }
+.cs-total .ctv { font-family: 'DM Mono', monospace; font-size: 1.1rem; color: var(--accent2); font-weight: 600; }
+
+/* Internal grand total */
+.int-grand {
+  background: linear-gradient(135deg, #5a2d0c 0%, #8b4513 100%);
+  border: 1px solid #a0530f; border-radius: var(--r);
+  padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; box-shadow: var(--shadow-lg);
+}
+.int-grand .igl { font-family: 'Playfair Display', serif; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+.int-grand .igv { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #ffffff; }
+
+/* Internal actions */
+.int-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ia-btn {
+  padding: 13px 18px; border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  gap: 8px; transition: all 0.2s;
+}
+.ia-wa { background: #25d366; color: white; }
+.ia-wa:hover { background: #1fb855; }
+.ia-print { background: var(--accent2); color: white; }
+.ia-print:hover { background: #6d3410; }
+.ia-reset { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border2); grid-column: 1/-1; }
+
+/* ── Print ── */
+@media print {
+  .mode-bar, .int-actions, .quote-actions, .back-link, .next-btn, .progress-bar { display: none !important; }
+  .page { display: block !important; }
+  #wizard-page { display: none !important; }
+  .hero-total { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .int-grand   { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+@media (max-width: 420px) {
+  .step-question { font-size: 1.15rem; }
+  .big-input { font-size: 1.3rem; padding: 12px 42px 12px 12px; }
+  .hero-amount { font-size: 2.4rem; }
+  .ci-grid { grid-template-columns: repeat(2, 1fr); }
+  .int-actions { grid-template-columns: 1fr; }
+  .ia-reset { grid-column: 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ MODE BAR ═══ -->
+<div class="mode-bar">
+  <div class="mode-inner">
+    <div class="mode-brand">
+      Amar Furniture
+      <span>Pillar Mehrab Quote</span>
+    </div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" onclick="switchMode('customer')">🛕 Customer</button>
+      <button class="mode-btn" onclick="switchMode('internal')">⚙️ Internal</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     CUSTOMER MODE
+═══════════════════════════════════════ -->
+<div class="page active" id="customer-mode">
+
+  <!-- WIZARD -->
+  <div id="wizard-page">
+  <div class="wizard-wrap">
+    <div class="progress-bar">
+      <div class="progress-track"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="progress-label" id="prog-label">Step 1 of 2</div>
+    </div>
+    <div id="wizard-steps"></div>
+  </div>
+  </div>
+
+  <!-- QUOTE RESULT -->
+  <div id="quote-page" style="display:none">
+  <div class="quote-wrap">
+
+    <div class="hero-total">
+      <div class="hero-eyebrow">Your Quote is Ready</div>
+      <div class="hero-firm">Amar Furniture, Nashik</div>
+      <div class="hero-amount" id="q-grand">₹0</div>
+      <div class="hero-ref" id="q-ref">—</div>
+    </div>
+
+    <div id="q-breakdown"></div>
+
+    <div class="quote-actions">
+      <button class="qa-btn qa-wa" onclick="shareWhatsApp('customer')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </button>
+      <button class="qa-btn qa-print" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Save PDF
+      </button>
+      <button class="qa-btn qa-restart" onclick="restartWizard()">↺ Start Over</button>
+    </div>
+
+  </div>
+  </div>
+
+</div><!-- /customer-mode -->
+
+
+<!-- ═══════════════════════════════════════
+     INTERNAL CALCULATOR
+═══════════════════════════════════════ -->
+<div class="page" id="internal-mode">
+<div class="calc-wrap">
+
+  <!-- PILLARS -->
+  <div class="calc-section">
+    <div class="cs-header pillar"><h2>🏛️ Pillars</h2><span class="badge">Component 1</span></div>
+    <div class="cs-sub">
+      <div class="cs-sub-title">1.1 Wood</div>
+      <div class="ci-grid">
+        <div class="ci-field"><label>Length (ft)</label><input type="number" id="i_p_wood_l" placeholder="4" step="0.1" oninput="iPrefillLathe();iCalc()"></div>
+        <div class="ci-field"><label>Breadth (in)</label><input type="number" id="i_p_wood_b" placeholder="3" step="0.1" oninput="iPrefillLathe();iCalc()"></div>
+        <div class="ci-field"><label>Height (in)</label><input type="number" id="i_p_wood_h" placeholder="3" step="0.1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Qty (nos)</label><input type="number" id="i_p_wood_qty" value="2" step="1" oninput="iPrefillLatheQty();iCalc()"></div>
+        <div class="ci-field"><label>Rate (₹/cft)</label><input type="number" id="i_p_wood_rate" class="rate" value="5500" step="100" oninput="iCalc()"></div>
+      </div>
+      <div class="formula">CFT = L(ft) × B(in) × H(in) × Qty ÷ 144 &nbsp;|&nbsp; Amount = CFT × Rate</div>
+      <div class="result-row"><span class="rl">Total CFT</span><span class="rv" id="i_p_wood_cft">—</span></div>
+      <div class="result-row" style="margin-top:6px"><span class="rl">Wood Amount</span><span class="rv" id="i_p_wood_amt">—</span></div>
+    </div>
+    <div class="cs-sub">
+      <div class="cs-sub-title">1.2 Lathe Charges</div>
+      <div class="ci-grid">
+        <div class="ci-field"><label>Length (ft)</label><input type="number" id="i_p_lathe_l" placeholder="4" step="0.1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Diameter (in)</label><input type="number" id="i_p_lathe_d" placeholder="3" step="0.1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Qty (nos)</label><input type="number" id="i_p_lathe_qty" value="2" step="1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Rate (₹/unit)</label><input type="number" id="i_p_lathe_rate" class="rate" value="100" step="10" oninput="iCalc()"></div>
+      </div>
+      <div class="formula">Amount = L(ft) × D(in) × Qty × Rate</div>
+      <div class="result-row"><span class="rl">Lathe Area</span><span class="rv" id="i_p_lathe_area">—</span></div>
+      <div class="result-row" style="margin-top:6px"><span class="rl">Lathe Amount</span><span class="rv" id="i_p_lathe_amt">—</span></div>
+    </div>
+    <div class="cs-total"><span class="ctl">Total Pillar Cost</span><span class="ctv" id="i_pillar_total">₹ —</span></div>
+  </div>
+
+  <!-- MEHRAB -->
+  <div class="calc-section">
+    <div class="cs-header mehrab"><h2>🕌 Mehrab (Arch Frame)</h2><span class="badge">Component 2</span></div>
+    <div class="cs-sub">
+      <div class="cs-sub-title">2.1 Wood</div>
+      <div class="ci-grid">
+        <div class="ci-field"><label>Length (ft)</label><input type="number" id="i_m_wood_l" placeholder="4" step="0.1" oninput="iPrefillCNC();iCalc()"></div>
+        <div class="ci-field"><label>Breadth (in)</label><input type="number" id="i_m_wood_b" placeholder="6" step="0.1" oninput="iPrefillCNC();iCalc()"></div>
+        <div class="ci-field"><label>Height (in)</label><input type="number" id="i_m_wood_h" placeholder="1" value="1" step="0.1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Qty (nos)</label><input type="number" id="i_m_wood_qty" value="1" step="1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Rate (₹/cft)</label><input type="number" id="i_m_wood_rate" class="rate" value="5500" step="100" oninput="iCalc()"></div>
+      </div>
+      <div class="formula">CFT = L(ft) × B(in) × H(in) × Qty ÷ 144 &nbsp;|&nbsp; Amount = CFT × Rate</div>
+      <div class="result-row"><span class="rl">Total CFT</span><span class="rv" id="i_m_wood_cft">—</span></div>
+      <div class="result-row" style="margin-top:6px"><span class="rl">Wood Amount</span><span class="rv" id="i_m_wood_amt">—</span></div>
+    </div>
+    <div class="cs-sub">
+      <div class="cs-sub-title">2.2 CNC Design Charges</div>
+      <div class="ci-grid">
+        <div class="ci-field"><label>Length (in)</label><input type="number" id="i_m_cnc_l" placeholder="48" step="0.1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Breadth (in)</label><input type="number" id="i_m_cnc_b" placeholder="24" step="0.1" oninput="iCalc()"></div>
+        <div class="ci-field"><label>Rate (₹/sq in)</label><input type="number" id="i_m_cnc_rate" class="rate" value="3" step="0.5" oninput="iCalc()"></div>
+      </div>
+      <div class="formula">Amount = L(in) × B(in) × Rate</div>
+      <div class="result-row"><span class="rl">CNC Area (sq in)</span><span class="rv" id="i_m_cnc_area">—</span></div>
+      <div class="result-row" style="margin-top:6px"><span class="rl">CNC Amount</span><span class="rv" id="i_m_cnc_amt">—</span></div>
+    </div>
+    <div class="cs-total"><span class="ctl">Total Mehrab Cost</span><span class="ctv" id="i_mehrab_total">₹ —</span></div>
+  </div>
+
+  <div class="int-grand">
+    <span class="igl">Grand Total</span>
+    <span class="igv" id="i_grand_total">₹ 0</span>
+  </div>
+
+  <div class="int-actions">
+    <button class="ia-btn ia-wa" onclick="shareWhatsApp('internal')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </button>
+    <button class="ia-btn ia-print" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Print / PDF
+    </button>
+    <button class="ia-btn ia-reset" onclick="iReset()">↺ Reset All</button>
+  </div>
+
+</div>
+</div><!-- /internal-mode -->
+
+
+<script>
+// ════════════════════════════════════════
+//  SHARED
+// ════════════════════════════════════════
+const today  = new Date();
+const dateStr = today.toLocaleDateString('en-IN', {day:'2-digit', month:'short', year:'numeric'});
+const refNo   = 'PMQ-' + today.getFullYear().toString().slice(2) + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0');
+const fmtInr  = n => '₹' + Math.round(n).toLocaleString('en-IN');
+const fmtDisp = n => n > 0 ? '₹\u202f' + Math.round(n).toLocaleString('en-IN') : '—';
+const fmtN    = (n,d=3) => isNaN(n)||n<=0 ? '—' : n.toFixed(d);
+const iv      = id => parseFloat(document.getElementById(id).value) || 0;
+
+function switchMode(m) {
+  document.getElementById('customer-mode').classList.toggle('active', m==='customer');
+  document.getElementById('internal-mode').classList.toggle('active', m==='internal');
+  document.querySelectorAll('.mode-btn').forEach((b,i) => b.classList.toggle('active', (m==='customer'&&i===0)||(m==='internal'&&i===1)));
+}
+
+// ════════════════════════════════════════
+//  WIZARD — DATA & STEPS
+// ════════════════════════════════════════
+// Trilingual labels
+const T = {
+  // Step labels
+  s1: { en:'Pillar Size', hi:'खंभे का आकार', mr:'खांबाचा आकार' },
+  s2: { en:'How many pillars?', hi:'कितने खंभे?', mr:'किती खांब?' },
+  s3: { en:'Mehrab Size', hi:'मेहराब का आकार', mr:'मेहरबाचा आकार' },
+  s4: { en:'CNC Panel Size', hi:'CNC पैनल का आकार', mr:'CNC पॅनेलचा आकार' },
+  s5: { en:'Wood Rate', hi:'लकड़ी की दर', mr:'लाकडाचा दर' },
+  // Questions
+  q1: { en:'What size are the pillars?', hi:'खंभों का साइज़ क्या है?', mr:'खांबाचा आकार काय आहे?' },
+  q2: { en:'How many pillars in total?', hi:'कुल कितने खंभे हैं?', mr:'एकूण किती खांब आहेत?' },
+  q3: { en:'What is the Mehrab wood size?', hi:'मेहराब की लकड़ी का साइज़?', mr:'मेहरबाच्या लाकडाचा आकार?' },
+  q4: { en:'What is the CNC panel size?', hi:'CNC पैनल का साइज़ क्या है?', mr:'CNC पॅनेलचा आकार काय आहे?' },
+  q5: { en:'Confirm wood rate per CFT', hi:'लकड़ी की दर प्रति CFT', mr:'लाकडाचा दर प्रति CFT' },
+  // Subtitles
+  sub1: { en:'Length in feet · Breadth & Height in inches', hi:'लंबाई फुट में · चौड़ाई और ऊंचाई इंच में', mr:'लांबी फुटात · रुंदी आणि उंची इंचात' },
+  sub2: { en:'Usually 2 pillars on either side', hi:'आमतौर पर दोनों तरफ 2 खंभे', mr:'साधारणपणे दोन्ही बाजूंनी 2 खांब' },
+  sub3: { en:'Length in feet · Breadth & Height in inches', hi:'लंबाई फुट में · चौड़ाई और ऊंचाई इंच में', mr:'लांबी फुटात · रुंदी आणि उंची इंचात' },
+  sub4: { en:'Both dimensions in inches', hi:'दोनों माप इंच में', mr:'दोन्ही माप इंचात' },
+  sub5: { en:'Default ₹5,500 per CFT — change if needed', hi:'डिफ़ॉल्ट ₹5,500 प्रति CFT — ज़रूरत हो तो बदलें', mr:'डीफॉल्ट ₹5,500 प्रति CFT — हवे असल्यास बदला' },
+  // Field labels
+  fl_l:   { en:'Length (ft)', hi:'लंबाई (ft)', mr:'लांबी (ft)' },
+  fl_b:   { en:'Breadth (in)', hi:'चौड़ाई (in)', mr:'रुंदी (in)' },
+  fl_h:   { en:'Height (in)', hi:'ऊंचाई (in)', mr:'उंची (in)' },
+  fl_lin: { en:'Length (in)', hi:'लंबाई (in)', mr:'लांबी (in)' },
+  fl_bin: { en:'Breadth (in)', hi:'चौड़ाई (in)', mr:'रुंदी (in)' },
+  fl_qty: { en:'Qty (nos)', hi:'संख्या (नग)', mr:'संख्या (नग)' },
+  fl_rate:{ en:'Rate (₹/cft)', hi:'दर (₹/cft)', mr:'दर (₹/cft)' },
+  // Buttons
+  btn_next: { en:'Next →', hi:'आगे →', mr:'पुढे →' },
+  btn_calc: { en:'Calculate My Quote →', hi:'मेरा कोटेशन देखें →', mr:'माझे कोटेशन पहा →' },
+  btn_back: { en:'← Back', hi:'← वापस', mr:'← मागे' },
+};
+
+const L = (key) => {
+  const o = T[key];
+  if (!o) return key;
+  return `${o.en} · <span class="lang">${o.hi} · ${o.mr}</span>`;
+};
+const Lplain = (key) => {
+  const o = T[key]; if(!o) return key;
+  return o.en;
+};
+
+let W = {}; // wizard state
+
+const STEPS = [
+  { id:'pillar_size' },
+  { id:'mehrab_size' },
+];
+
+let currentStep = 0;
+
+function renderStep(idx) {
+  const container = document.getElementById('wizard-steps');
+  const pct = Math.round((idx / STEPS.length) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = `Step ${idx+1} of ${STEPS.length}`;
+
+  let html = '';
+
+  if (idx === 0) {
+    // Pillar size: L, B, H
+    html = stepCard('pillar', 'q1', 'sub1', `
+      <div class="input-row three">
+        <div>
+          <div class="field-label">${L('fl_l')}</div>
+          <div class="big-input-wrap" style="margin-bottom:0">
+            <input class="big-input" type="number" id="w_p_l" placeholder="4" step="0.1" value="${W.p_l||''}" oninput="wLiveCalc()">
+            <span class="big-input-unit">ft</span>
+          </div>
+        </div>
+        <div>
+          <div class="field-label">${L('fl_b')}</div>
+          <div class="big-input-wrap" style="margin-bottom:0">
+            <input class="big-input" type="number" id="w_p_b" placeholder="3" step="0.1" value="${W.p_b||''}" oninput="wLiveCalc()">
+            <span class="big-input-unit">in</span>
+          </div>
+        </div>
+        <div>
+          <div class="field-label">${L('fl_h')}</div>
+          <div class="big-input-wrap" style="margin-bottom:0">
+            <input class="big-input" type="number" id="w_p_h" placeholder="3" step="0.1" value="${W.p_h||''}" oninput="wLiveCalc()">
+            <span class="big-input-unit">in</span>
+          </div>
+        </div>
+      </div>
+    `, false);
+  }
+  else if (idx === 1) {
+    // Mehrab size — this is the final step
+    html = stepCard('mehrab', 'q3', 'sub3', `
+      <div class="input-row three">
+        <div>
+          <div class="field-label">${L('fl_l')}</div>
+          <div class="big-input-wrap" style="margin-bottom:0">
+            <input class="big-input" type="number" id="w_m_l" placeholder="4" step="0.1" value="${W.m_l||''}" oninput="wLiveCalc()">
+            <span class="big-input-unit">ft</span>
+          </div>
+        </div>
+        <div>
+          <div class="field-label">${L('fl_b')}</div>
+          <div class="big-input-wrap" style="margin-bottom:0">
+            <input class="big-input" type="number" id="w_m_b" placeholder="6" step="0.1" value="${W.m_b||''}" oninput="wLiveCalc()">
+            <span class="big-input-unit">in</span>
+          </div>
+        </div>
+        <div>
+          <div class="field-label">${L('fl_h')}</div>
+          <div class="big-input-wrap" style="margin-bottom:0">
+            <input class="big-input" type="number" id="w_m_h" placeholder="1" step="0.1" value="${W.m_h||1}" oninput="wLiveCalc()">
+            <span class="big-input-unit">in</span>
+          </div>
+        </div>
+      </div>
+    `, true);
+  }
+
+  container.innerHTML = html;
+
+  // Focus first input
+  setTimeout(() => {
+    const first = container.querySelector('input');
+    if (first) first.focus();
+  }, 100);
+
+  wLiveCalc();
+}
+
+function stepCard(dotType, qKey, subKey, inputsHtml, isFinal) {
+  const nextLabel = isFinal
+    ? `<span>${T.btn_calc.en}</span><span style="opacity:0.6;font-size:0.8rem">${T.btn_calc.hi} · ${T.btn_calc.mr}</span>`
+    : `<span>${T.btn_next.en}</span><span style="opacity:0.6;font-size:0.8rem">${T.btn_next.hi} · ${T.btn_next.mr}</span>`;
+
+  const backHtml = currentStep > 0
+    ? `<div class="back-link" onclick="wizardBack()">${T.btn_back.en} · ${T.btn_back.hi} · ${T.btn_back.mr}</div>`
+    : '';
+
+  return `
+    <div class="step-card">
+      <div class="step-eyebrow">
+        <span class="dot dot-${dotType}"></span>
+        Step ${currentStep+1} of ${STEPS.length}
+      </div>
+      <div class="step-question">${T[qKey].en}</div>
+      <div class="step-sub">
+        ${T[subKey].hi} · ${T[subKey].mr}
+        <br><span class="lang">${T[subKey].en}</span>
+      </div>
+      <div id="w-live-preview" class="live-preview" style="display:none">
+        <span class="lp-label">Estimated so far</span>
+        <span class="lp-value" id="w-preview-val">—</span>
+      </div>
+      ${inputsHtml}
+      <button class="next-btn" onclick="wizardNext()" style="margin-top:20px; flex-direction:column; gap:2px; padding:14px">
+        ${nextLabel}
+      </button>
+    </div>
+    ${backHtml}
+  `;
+}
+
+function wSave() {
+  if (currentStep === 0) {
+    W.p_l = +document.getElementById('w_p_l')?.value||0;
+    W.p_b = +document.getElementById('w_p_b')?.value||0;
+    W.p_h = +document.getElementById('w_p_h')?.value||0;
+    W.p_qty = 2; // always 2
+  }
+  if (currentStep === 1) {
+    W.m_l = +document.getElementById('w_m_l')?.value||0;
+    W.m_b = +document.getElementById('w_m_b')?.value||0;
+    W.m_h = +document.getElementById('w_m_h')?.value||1;
+    // auto-derive CNC from mehrab
+    W.cnc_l = W.m_l ? parseFloat((W.m_l * 12).toFixed(1)) : 0;
+    W.cnc_b = W.m_b || 0;
+  }
+  W.rate = 5500; // always default
+}
+
+function wCalcTotals() {
+  const r = W.rate || 5500;
+  const pWcft = (W.p_l||0)*(W.p_b||0)*(W.p_h||0)*(W.p_qty||2)/144;
+  const pWamt = pWcft * r;
+  const pLamt = (W.p_l||0)*(W.p_b||0)*(W.p_qty||2)*100; // lathe: L×D×qty×100
+  const pillarTotal = pWamt + pLamt;
+  const mWcft = (W.m_l||0)*(W.m_b||0)*(W.m_h||0)*1/144;
+  const mWamt = mWcft * r;
+  const mCamt = (W.cnc_l||0)*(W.cnc_b||0)*3;
+  const mehrabTotal = mWamt + mCamt;
+  const grand = pillarTotal + mehrabTotal;
+  return {pWcft,pWamt,pLamt,pillarTotal,mWcft,mWamt,mCamt,mehrabTotal,grand,r};
+}
+
+function wLiveCalc() {
+  wSave();
+  const {grand} = wCalcTotals();
+  const el = document.getElementById('w-live-preview');
+  const vEl = document.getElementById('w-preview-val');
+  if (el && vEl) {
+    if (grand > 0) { el.style.display='flex'; vEl.textContent = fmtInr(grand); }
+    else { el.style.display='none'; }
+  }
+}
+
+function wizardNext() {
+  wSave();
+  if (currentStep < STEPS.length - 1) {
+    currentStep++;
+    renderStep(currentStep);
+  } else {
+    showQuote();
+  }
+}
+
+function wizardBack() {
+  if (currentStep > 0) { currentStep--; renderStep(currentStep); }
+}
+
+function showQuote() {
+  wSave();
+  const {pWcft,pWamt,pLamt,pillarTotal,mWcft,mWamt,mCamt,mehrabTotal,grand,r} = wCalcTotals();
+  document.getElementById('q-grand').textContent = fmtInr(grand);
+  document.getElementById('q-ref').textContent = refNo + ' · ' + dateStr;
+
+  let bd = '';
+
+  // Pillars card
+  if (pillarTotal > 0) {
+    bd += `<div class="breakdown-card">
+      <div class="bc-header pillar">
+        <h3>🏛️ Pillars</h3>
+        <span class="bc-total">${fmtInr(pillarTotal)}</span>
+      </div>
+      <table class="bc-table">
+        <tr class="bc-thead"><td>Item</td><td>Size</td><td class="td-qty">Qty</td><td class="td-rate">Rate</td><td class="td-amt">Amount</td></tr>`;
+    if (pWamt > 0) bd += `<tr><td class="td-name"><strong>Wood</strong><span class="td-size">${pWcft.toFixed(3)} cft</span></td><td class="td-name" style="font-size:0.75rem;color:var(--text-dim)">${W.p_l}ft × ${W.p_b}″ × ${W.p_h}″</td><td class="td-qty">${W.p_qty}</td><td class="td-rate">${fmtInr(r)}/cft</td><td class="td-amt">${fmtInr(pWamt)}</td></tr>`;
+    if (pLamt > 0) bd += `<tr><td class="td-name"><strong>Lathe Work</strong><span class="td-size">${W.p_l}ft × ${W.p_b}″ dia</span></td><td class="td-name" style="font-size:0.75rem;color:var(--text-dim)">${W.p_l}ft × ${W.p_b}″</td><td class="td-qty">${W.p_qty}</td><td class="td-rate">₹100/unit</td><td class="td-amt">${fmtInr(pLamt)}</td></tr>`;
+    bd += `</table></div>`;
+  }
+
+  // Mehrab card
+  if (mehrabTotal > 0) {
+    bd += `<div class="breakdown-card">
+      <div class="bc-header mehrab">
+        <h3>🕌 Mehrab</h3>
+        <span class="bc-total">${fmtInr(mehrabTotal)}</span>
+      </div>
+      <table class="bc-table">
+        <tr class="bc-thead"><td>Item</td><td>Size</td><td class="td-qty">Qty</td><td class="td-rate">Rate</td><td class="td-amt">Amount</td></tr>`;
+    if (mWamt > 0) bd += `<tr><td class="td-name"><strong>Wood</strong><span class="td-size">${mWcft.toFixed(3)} cft</span></td><td class="td-name" style="font-size:0.75rem;color:var(--text-dim)">${W.m_l}ft × ${W.m_b}″ × ${W.m_h}″</td><td class="td-qty">1</td><td class="td-rate">${fmtInr(r)}/cft</td><td class="td-amt">${fmtInr(mWamt)}</td></tr>`;
+    if (mCamt > 0) bd += `<tr><td class="td-name"><strong>CNC Design</strong><span class="td-size">${(W.cnc_l*W.cnc_b).toFixed(0)} sq in</span></td><td class="td-name" style="font-size:0.75rem;color:var(--text-dim)">${W.cnc_l}″ × ${W.cnc_b}″</td><td class="td-qty">1</td><td class="td-rate">₹3/sq in</td><td class="td-amt">${fmtInr(mCamt)}</td></tr>`;
+    bd += `</table></div>`;
+  }
+
+  document.getElementById('q-breakdown').innerHTML = bd;
+  document.getElementById('wizard-page').style.display = 'none';
+  document.getElementById('quote-page').style.display  = 'block';
+  window.scrollTo(0,0);
+}
+
+function restartWizard() {
+  W = {}; currentStep = 0;
+  document.getElementById('wizard-page').style.display = 'block';
+  document.getElementById('quote-page').style.display  = 'none';
+  renderStep(0);
+  window.scrollTo(0,0);
+}
+
+// ════════════════════════════════════════
+//  INTERNAL CALCULATOR
+// ════════════════════════════════════════
+function iPrefillLathe() {
+  const l = document.getElementById('i_p_wood_l').value;
+  const b = document.getElementById('i_p_wood_b').value;
+  if (l) document.getElementById('i_p_lathe_l').value = l;
+  if (b) document.getElementById('i_p_lathe_d').value = b;
+}
+function iPrefillLatheQty() {
+  const q = document.getElementById('i_p_wood_qty').value;
+  if (q) document.getElementById('i_p_lathe_qty').value = q;
+}
+function iPrefillCNC() {
+  const l = parseFloat(document.getElementById('i_m_wood_l').value);
+  const b = document.getElementById('i_m_wood_b').value;
+  if (l) document.getElementById('i_m_cnc_l').value = (l*12).toFixed(1);
+  if (b) document.getElementById('i_m_cnc_b').value = b;
+}
+
+let IS = {};
+
+function iCalc() {
+  const pWL=iv('i_p_wood_l'),pWB=iv('i_p_wood_b'),pWH=iv('i_p_wood_h'),pWQ=iv('i_p_wood_qty'),pWR=iv('i_p_wood_rate');
+  const pWcft=(pWL*pWB*pWH*pWQ)/144, pWamt=pWcft*pWR;
+  document.getElementById('i_p_wood_cft').textContent = fmtN(pWcft)+(pWcft>0?' cft':'');
+  document.getElementById('i_p_wood_amt').textContent = fmtDisp(pWamt);
+
+  const pLL=iv('i_p_lathe_l'),pLD=iv('i_p_lathe_d'),pLQ=iv('i_p_lathe_qty'),pLR=iv('i_p_lathe_rate');
+  const pLarea=pLL*pLD*pLQ, pLamt=pLarea*pLR;
+  document.getElementById('i_p_lathe_area').textContent = fmtN(pLarea,2)+(pLarea>0?' units':'');
+  document.getElementById('i_p_lathe_amt').textContent  = fmtDisp(pLamt);
+
+  const pillarTotal = pWamt+pLamt;
+  document.getElementById('i_pillar_total').textContent = pillarTotal>0 ? fmtDisp(pillarTotal) : '₹ —';
+
+  const mWL=iv('i_m_wood_l'),mWB=iv('i_m_wood_b'),mWH=iv('i_m_wood_h'),mWQ=iv('i_m_wood_qty'),mWR=iv('i_m_wood_rate');
+  const mWcft=(mWL*mWB*mWH*mWQ)/144, mWamt=mWcft*mWR;
+  document.getElementById('i_m_wood_cft').textContent = fmtN(mWcft)+(mWcft>0?' cft':'');
+  document.getElementById('i_m_wood_amt').textContent = fmtDisp(mWamt);
+
+  const mCL=iv('i_m_cnc_l'),mCB=iv('i_m_cnc_b'),mCR=iv('i_m_cnc_rate');
+  const mCarea=mCL*mCB, mCamt=mCarea*mCR;
+  document.getElementById('i_m_cnc_area').textContent = fmtN(mCarea,0)+(mCarea>0?' sq in':'');
+  document.getElementById('i_m_cnc_amt').textContent  = fmtDisp(mCamt);
+
+  const mehrabTotal = mWamt+mCamt;
+  document.getElementById('i_mehrab_total').textContent = mehrabTotal>0 ? fmtDisp(mehrabTotal) : '₹ —';
+
+  const grand = pillarTotal+mehrabTotal;
+  document.getElementById('i_grand_total').textContent = grand>0 ? fmtDisp(grand) : '₹ 0';
+
+  IS = {pWL,pWB,pWH,pWQ,pWR,pWcft,pWamt,pLL,pLD,pLQ,pLR,pLamt,pillarTotal,
+        mWL,mWB,mWH,mWQ,mWR,mWcft,mWamt,mCL,mCB,mCR,mCamt,mehrabTotal,grand};
+}
+
+function iReset() {
+  document.querySelectorAll('#internal-mode input[type="number"]').forEach(i => {
+    if (['i_p_wood_qty','i_p_lathe_qty'].includes(i.id)) i.value=2;
+    else if (i.id==='i_m_wood_qty') i.value=1;
+    else if (i.id==='i_p_lathe_rate') i.value=100;
+    else if (i.id==='i_m_cnc_rate') i.value=3;
+    else if (['i_p_wood_rate','i_m_wood_rate'].includes(i.id)) i.value=5500;
+    else i.value='';
+  });
+  iCalc();
+}
+
+// ════════════════════════════════════════
+//  WHATSAPP
+// ════════════════════════════════════════
+function shareWhatsApp(src) {
+  let txt;
+  if (src === 'customer') {
+    const {pWcft,pWamt,pLamt,pillarTotal,mWcft,mWamt,mCamt,mehrabTotal,grand,r} = wCalcTotals();
+    txt  = `🛕 *Amar Furniture — Pillar Mehrab Quote*\n📅 ${dateStr}  |  ${refNo}\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    if(pillarTotal>0){
+      txt += `*🏛️ PILLARS*\n`;
+      if(pWamt>0) txt += `  Wood (${pWcft.toFixed(3)} cft × ${fmtInr(r)}/cft): ${fmtInr(pWamt)}\n`;
+      if(pLamt>0) txt += `  Lathe (${W.p_l}ft × ${W.p_b}in × ${W.p_qty}nos × ₹100): ${fmtInr(pLamt)}\n`;
+      txt += `  *Subtotal: ${fmtInr(pillarTotal)}*\n\n`;
+    }
+    if(mehrabTotal>0){
+      txt += `*🕌 MEHRAB*\n`;
+      if(mWamt>0) txt += `  Wood (${mWcft.toFixed(3)} cft × ${fmtInr(r)}/cft): ${fmtInr(mWamt)}\n`;
+      if(mCamt>0) txt += `  CNC (${W.cnc_l}in × ${W.cnc_b}in × ₹3/sq in): ${fmtInr(mCamt)}\n`;
+      txt += `  *Subtotal: ${fmtInr(mehrabTotal)}*\n\n`;
+    }
+    txt += `━━━━━━━━━━━━━━━━━━━━\n💰 *GRAND TOTAL: ${fmtInr(grand)}*\n━━━━━━━━━━━━━━━━━━━━\n_Amar Furniture, Nashik_`;
+  } else {
+    const s = IS;
+    if(!s.grand||s.grand<=0){ alert('Nothing to share yet.'); return; }
+    txt  = `🛕 *Amar Furniture — Pillar Mehrab Quote*\n📅 ${dateStr}  |  ${refNo}\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    if(s.pillarTotal>0){
+      txt += `*🏛️ PILLARS*\n`;
+      if(s.pWamt>0) txt += `  Wood (${s.pWcft.toFixed(3)} cft × ${fmtInr(s.pWR)}/cft): ${fmtInr(s.pWamt)}\n`;
+      if(s.pLamt>0) txt += `  Lathe (${s.pLL}ft × ${s.pLD}in × ${s.pLQ}nos × ₹${s.pLR}): ${fmtInr(s.pLamt)}\n`;
+      txt += `  *Subtotal: ${fmtInr(s.pillarTotal)}*\n\n`;
+    }
+    if(s.mehrabTotal>0){
+      txt += `*🕌 MEHRAB*\n`;
+      if(s.mWamt>0) txt += `  Wood (${s.mWcft.toFixed(3)} cft × ${fmtInr(s.mWR)}/cft): ${fmtInr(s.mWamt)}\n`;
+      if(s.mCamt>0) txt += `  CNC (${s.mCL}in × ${s.mCB}in × ₹${s.mCR}/sq in): ${fmtInr(s.mCamt)}\n`;
+      txt += `  *Subtotal: ${fmtInr(s.mehrabTotal)}*\n\n`;
+    }
+    txt += `━━━━━━━━━━━━━━━━━━━━\n💰 *GRAND TOTAL: ${fmtInr(s.grand)}*\n━━━━━━━━━━━━━━━━━━━━\n_Amar Furniture, Nashik_`;
+  }
+  window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(txt),'_blank');
+}
+
+// ════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════
+renderStep(0);
+iCalc();
+</script>
+<style>
+/* ── PIN LOCK ── */
+#pin-lock {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #f5f0ea;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+}
+.pin-box {
+  background: #fff;
+  border: 1px solid #e4d9cc;
+  border-radius: 20px;
+  padding: 36px 28px 32px;
+  width: 100%; max-width: 340px;
+  box-shadow: 0 8px 32px rgba(26,18,8,0.1);
+  text-align: center;
+}
+.pin-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem; font-weight: 700;
+  color: #8b4513; margin-bottom: 4px;
+}
+.pin-logo span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 400; color: #a89880; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.pin-title {
+  font-size: 0.85rem; color: #6a5a48; margin: 18px 0 20px;
+}
+.pin-dots {
+  display: flex; justify-content: center; gap: 10px; margin-bottom: 24px;
+}
+.pin-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #e4d9cc; transition: background 0.15s;
+}
+.pin-dot.filled { background: #8b4513; }
+.pin-dot.error  { background: #c0392b; }
+.pin-keypad {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+}
+.pin-key {
+  padding: 16px 0; border: 1.5px solid #e4d9cc; border-radius: 12px;
+  font-size: 1.3rem; font-weight: 500; color: #1a1208;
+  background: #faf6f1; cursor: pointer;
+  transition: all 0.12s; user-select: none;
+  font-family: 'DM Mono', monospace;
+}
+.pin-key:hover  { background: #f0e8de; border-color: #c8b89a; }
+.pin-key:active { transform: scale(0.94); background: #e8d9c8; }
+.pin-key.del    { font-size: 1.1rem; color: #6a5a48; }
+.pin-key.empty  { background: transparent; border-color: transparent; cursor: default; }
+.pin-shake {
+  animation: pinShake 0.4s ease;
+}
+@keyframes pinShake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-6px); }
+  80%      { transform: translateX(6px); }
+}
+</style>
+
+<!-- PIN LOCK -->
+<div id="pin-lock">
+  <div class="pin-box" id="pin-box">
+    <div class="pin-logo">🛕 Amar Furniture <span>Pillar Mehrab Quote</span></div>
+    <div class="pin-title">Enter PIN to continue</div>
+    <div class="pin-dots" id="pin-dots">
+      <div class="pin-dot" id="d0"></div>
+      <div class="pin-dot" id="d1"></div>
+      <div class="pin-dot" id="d2"></div>
+      <div class="pin-dot" id="d3"></div>
+      <div class="pin-dot" id="d4"></div>
+      <div class="pin-dot" id="d5"></div>
+    </div>
+    <div class="pin-keypad">
+      <button class="pin-key" onclick="pinPress('1')">1</button>
+      <button class="pin-key" onclick="pinPress('2')">2</button>
+      <button class="pin-key" onclick="pinPress('3')">3</button>
+      <button class="pin-key" onclick="pinPress('4')">4</button>
+      <button class="pin-key" onclick="pinPress('5')">5</button>
+      <button class="pin-key" onclick="pinPress('6')">6</button>
+      <button class="pin-key" onclick="pinPress('7')">7</button>
+      <button class="pin-key" onclick="pinPress('8')">8</button>
+      <button class="pin-key" onclick="pinPress('9')">9</button>
+      <button class="pin-key empty" disabled></button>
+      <button class="pin-key" onclick="pinPress('0')">0</button>
+      <button class="pin-key del" onclick="pinDel()">⌫</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const PIN_CORRECT = '240322';
+let pinEntry = '';
+
+function pinPress(d) {
+  if (pinEntry.length >= 6) return;
+  pinEntry += d;
+  updateDots();
+  if (pinEntry.length === 6) {
+    setTimeout(() => {
+      if (pinEntry === PIN_CORRECT) {
+        document.getElementById('pin-lock').style.display = 'none';
+      } else {
+        // Wrong — shake and reset
+        const dots = document.getElementById('pin-dots');
+        document.querySelectorAll('.pin-dot').forEach(d => d.classList.add('error'));
+        document.getElementById('pin-box').classList.add('pin-shake');
+        setTimeout(() => {
+          pinEntry = '';
+          updateDots();
+          document.querySelectorAll('.pin-dot').forEach(d => d.classList.remove('error'));
+          document.getElementById('pin-box').classList.remove('pin-shake');
+        }, 600);
+      }
+    }, 80);
+  }
+}
+
+function pinDel() {
+  if (pinEntry.length === 0) return;
+  pinEntry = pinEntry.slice(0, -1);
+  updateDots();
+}
+
+function updateDots() {
+  for (let i = 0; i < 6; i++) {
+    document.getElementById('d' + i).classList.toggle('filled', i < pinEntry.length);
+  }
+}
+</script>
+
+
+</html>
